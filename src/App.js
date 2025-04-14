@@ -13,6 +13,8 @@ import UserProfile from './components/UserProfile';
 import LogIn from './components/Login';
 import Credits from './components/Credits';
 import Debits from './components/Debits';
+import TransactionHistory from './components/TransactionHistory';
+import AccountDetails from './components/AccountDetails';
 
 class App extends Component {
   constructor() {  // Create and initialize state
@@ -45,16 +47,20 @@ class App extends Component {
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)
     const CreditsComponent = () => (<Credits credits={this.state.creditList} />) 
     const DebitsComponent = () => (<Debits debits={this.state.debitList} />) 
+    const TransactionHistoryComponent = () => (<TransactionHistory />);
+    const AccountDetailsComponent = () => (<AccountDetails />);
 
     // Important: Include the "basename" in Router, which is needed for deploying the React app to GitHub Pages
     return (
-      <Router basename="/bank-of-react-starter-code">
+      <Router basename="/Assignment3-Bank-of-React">
         <div>
           <Route exact path="/" render={HomeComponent}/>
           <Route exact path="/userProfile" render={UserProfileComponent}/>
           <Route exact path="/login" render={LogInComponent}/>
           <Route exact path="/credits" render={CreditsComponent}/>
           <Route exact path="/debits" render={DebitsComponent}/>
+          <Route exact path="/transactions" render={TransactionHistoryComponent}/>
+          <Route exact path="/account-details" render={AccountDetailsComponent}/>
         </div>
       </Router>
     );
