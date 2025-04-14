@@ -29,6 +29,63 @@ class App extends Component {
       }
     };
   }
+  
+    componentDidMount() {
+      fetch('https://johnnylaicode.github.io/api/credits.json')
+        .then(response => response.json())
+        .then(data => {
+          this.setState({ creditList: data }, this.calculateAccountBalance);
+        });
+      fetch('https://johnnylaicode.github.io/api/debits.json')
+        .then(response => response.json())
+        .then(data => {
+          this.setState({ debitList: data }, this.calculateAccountBalance);
+        });
+    }
+  
+    calculateAccountBalance = () => {
+      let totalCredits = this.state.creditList.reduce(
+        (sum, credit) => sum + parseFloat(credit.amount), 0
+      );
+      let totalDebits = this.state.debitList.reduce(
+        (sum, debit) => sum + parseFloat(debit.amount), 0
+      );
+      let balance = totalCredits - totalDebits;
+      balance = Math.round(balance * 100) / 100;
+      this.setState({ accountBalance: balance });
+    }
+  
+    addCredit = (e) => {
+      e.preventDefault();
+      const description = e.target.description.value;
+      const amount = parseFloat(e.target.amount.value);
+      const newCredit = {
+        id: Date.now(),
+        description,
+        amount,
+        date: new Date().toISOString()
+      };
+      this.setState(
+        prevState => ({ creditList: [...prevState.creditList, newCredit] }),
+        this.calculateAccountBalance
+      );
+    }
+  
+    addDebit = (e) => {
+      e.preventDefault();
+      const description = e.target.description.value;
+      const amount = parseFloat(e.target.amount.value);
+      const newDebit = {
+        id: Date.now(),
+        description,
+        amount,
+        date: new Date().toISOString()
+      };
+      this.setState(
+        prevState => ({ debitList: [...prevState.debitList, newDebit] }),
+        this.calculateAccountBalance
+      );
+    }
 
   // Update state's currentUser (userName) after "Log In" button is clicked
   mockLogIn = (logInInfo) => {  
