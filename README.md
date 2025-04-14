@@ -1,5 +1,5 @@
 # Bank of React
-##Import and clone the Bank of React starter code, develop and debug locally while configuring routes and necessary dependencies, and then deploy the updated React application to GitHub Pages via gh-pages.
+Import and clone the Bank of React starter code, develop and debug locally while configuring routes and necessary dependencies, and then deploy the updated React application to GitHub Pages via gh-pages.
 
 ---
 
