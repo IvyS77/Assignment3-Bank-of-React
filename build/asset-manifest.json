@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Assignment3-Bank-of-React/static/css/main.01e685fb.css",
+    "main.js": "/Assignment3-Bank-of-React/static/js/main.e3bcd8d8.js",
+    "static/js/453.d81f9453.chunk.js": "/Assignment3-Bank-of-React/static/js/453.d81f9453.chunk.js",
+    "index.html": "/Assignment3-Bank-of-React/index.html",
+    "main.01e685fb.css.map": "/Assignment3-Bank-of-React/static/css/main.01e685fb.css.map",
+    "main.e3bcd8d8.js.map": "/Assignment3-Bank-of-React/static/js/main.e3bcd8d8.js.map",
+    "453.d81f9453.chunk.js.map": "/Assignment3-Bank-of-React/static/js/453.d81f9453.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.01e685fb.css",
+    "static/js/main.e3bcd8d8.js"
+  ]
+}
