@@ -6,8 +6,6 @@ It contains the top-level state.
 ==================================================*/
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-
-// Import other components
 import Home from './components/Home';
 import UserProfile from './components/UserProfile';
 import LogIn from './components/Login';
@@ -87,16 +85,13 @@ class App extends Component {
       );
     }
 
-  // Update state's currentUser (userName) after "Log In" button is clicked
   mockLogIn = (logInInfo) => {  
     const newUser = {...this.state.currentUser};
     newUser.userName = logInInfo.userName;
     this.setState({currentUser: newUser})
   }
 
-  // Create Routes and React elements to be rendered using React components
   render() {  
-    // Create React elements and pass input props to components
     const HomeComponent = () => (<Home accountBalance={this.state.accountBalance} />)
     const UserProfileComponent = () => (
       <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince} />
