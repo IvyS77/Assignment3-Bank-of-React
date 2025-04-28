@@ -4,29 +4,60 @@ src/components/Debits.js
 The Debits component contains information for Debits page view.
 Note: You need to work on this file for the Assignment.
 ==================================================*/
-import {Link} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link }        from 'react-router-dom';
+import AccountBalance  from './AccountBalance';
 
 const Debits = (props) => {
-  // Create the list of Debit items
-  let debitsView = () => {
-    const { debits } = props;
-    return debits.map((debit) => {  // Extract "id", "amount", "description" and "date" properties of each debits JSON array element
-      let date = debit.date.slice(0,10);
-      return <li key={debit.id}>{debit.amount} {debit.description} {date}</li>
-    });
-  }
-  // Render the list of Debit items and a form to input new Debit item
+  const [description, setDescription] = useState('');
+  const [amount,      setAmount     ] = useState('');
+
+  const debitsView = props.debits.map(d => {
+    const date = d.date.slice(0,10);
+    return (
+      <li key={d.id}>
+        {d.amount.toFixed(2)} — {d.description} — {date}
+      </li>
+    );
+  });
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    props.addDebit(e);       
+    setDescription('');      
+    setAmount('');
+  };
+
   return (
     <div>
       <h1>Debits</h1>
 
-      {debitsView()}
+      {/* Show current balance */}
+      <AccountBalance accountBalance={props.accountBalance} />
 
-      <form onSubmit={props.addDebit}>
-        <input type="text" name="description" />
-        <input type="number" name="amount" />
+      {/* List of debits */}
+      <ul>{debitsView}</ul>
+
+      {/* Form to add new debit */}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="description"
+          placeholder="Description"
+          value={description}
+          onChange={e => setDescription(e.target.value)}
+        />
+        <input
+          type="number"
+          name="amount"
+          step="0.01"
+          placeholder="Amount"
+          value={amount}
+          onChange={e => setAmount(e.target.value)}
+        />
         <button type="submit">Add Debit</button>
       </form>
+
       <br/>
       <Link to="/">Return to Home</Link>
     </div>
